@@ -65,6 +65,13 @@ replacements = {
     'ODOO': 'FLECTRA',
     '8069': '7073',
     'Part of Flectra.': 'Part of Odoo, Flectra.',
+    'openerp': 'flectra',
+    'Openerp': 'Flectra',
+    'OpenERP': 'Flectra',
+    'OpenErp': 'Flectra',
+    'OPENERP': 'FLECTRA',
+    'Part of Flectra.': 'Part of Openerp, Flectra.',
+    'Part of Flectra.': 'Part of OpenERP, Flectra.',
 }
 
 xml_replacements = {
@@ -72,20 +79,39 @@ xml_replacements = {
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
     'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'openerp': 'flectra',
+    'Openerp': 'Flectra',
+    'OpenERP': 'Flectra',
+    'OpenErp': 'Flectra',
+    'OPENERP': 'FLECTRA',
+    'Part of Flectra.': 'Part of Openerp, Flectra.',
+    'Part of Flectra.': 'Part of OpenERP, Flectra.',
 }
 
 init_replacements = {
     'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
+    'openerp': 'flectra',
+    'Openerp': 'Flectra',
+    'OpenERP': 'Flectra',
+    'OpenErp': 'Flectra',
 }
 
 manifest_replacements = {
     'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
+    'openerp': 'flectra',
+    'Openerp': 'Flectra',
+    'OpenERP': 'Flectra',
+    'OpenErp': 'Flectra',
 }
 
 re_replacements = {
     'Odoo.': 'Odoo, Flectra.',
+    'openerp': 'openerp, flectra',
+    'Openerp': 'Openerp, Flectra',
+    'OpenERP': 'OpenERP, Flectra',
+    'OpenErp': 'OpenErp, Flectra',
 }
 
 ingnore_dir = [
@@ -105,10 +131,13 @@ ingnore_files = [
 website_replacements = {
     'https://www.odoo.com': 'https://flectrahq.com',
     'www.odoo.com': 'https://flectrahq.com',
+    'https://www.openerp.com': 'https://flectrahq.com',
+    'www.opernerp.com': 'https://flectrahq.com',
 }
 
 replace_email = {
     'info@odoo.com': 'info@flectrahq.com',
+    'info@openerp.com': 'info@flectrahq.com',
 }
 
 def init_files(root):
