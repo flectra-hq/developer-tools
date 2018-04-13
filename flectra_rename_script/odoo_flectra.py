@@ -50,9 +50,13 @@ else:
         os._exit(1)
 
 suffix = "/"
+win_suffix = "\\"
 
-while odoo_path.endswith(suffix, len(odoo_path) - 1):
+while odoo_path.endswith(suffix, len(odoo_path) - 1) or odoo_path.endswith(
+        win_suffix, len(odoo_path) - 1):
     odoo_path = odoo_path[:len(odoo_path) - 1]
+
+path_join = os.path.join
 
 logging.info("You Directory is : %s" % odoo_path)
 if '--copy' in sys.argv or '-C' in sys.argv or '-c' in sys.argv:
@@ -140,20 +144,22 @@ replace_email = {
     'info@openerp.com': 'info@flectrahq.com',
 }
 
+
 def init_files(root):
-    infile = open(root + '__init__.py', 'r').read()
-    out = open(root + '__init__.py', 'w')
+    infile = open(path_join(root, '__init__.py'), 'r').read()
+    out = open(path_join(root, '__init__.py'), 'w')
     for i in init_replacements.keys():
         infile = infile.replace(i, init_replacements[i])
     out.write(infile)
     out.close
 
+
 def manifest_files(root):
     temp = {}
-    infile = open(root + '__manifest__.py', 'r').read()
+    infile = open(path_join(root, '__manifest__.py'), 'r').read()
     temp.update(replace_email)
     temp.update(website_replacements)
-    out = open(root + '__manifest__.py', 'w')
+    out = open(path_join(root, '__manifest__.py'), 'w')
     for i in temp.keys():
         infile = infile.replace(i, temp[i])
     out.write(infile)
@@ -162,8 +168,8 @@ def manifest_files(root):
 
 
 def xml_csv_json_files(root, name):
-    infile = open(root + name, 'r').read()
-    out = open(root + name, 'w')
+    infile = open(path_join(root, name), 'r').read()
+    out = open(path_join(root, name), 'w')
     for i in replace_email.keys():
         infile = infile.replace(i, replace_email[i])
     for i in xml_replacements.keys():
@@ -173,8 +179,8 @@ def xml_csv_json_files(root, name):
 
 
 def python_files(root, name):
-    infile = open(root + name, 'r').read()
-    out = open(root + name, 'w')
+    infile = open(path_join(root, name), 'r').read()
+    out = open(path_join(root, name), 'w')
     for i in replace_email.keys():
         infile = infile.replace(i, replace_email[i])
     out.write(infile)
@@ -183,7 +189,7 @@ def python_files(root, name):
 
 
 def content_replacements(root, name, replace_dict):
-    infile = open(root + name, 'r').readlines()
+    infile = open(path_join(root, name), 'r').readlines()
     multilist = []
     if infile:
         for line in infile:
@@ -202,12 +208,12 @@ def content_replacements(root, name, replace_dict):
             for word in lines:
                 word = word if word.endswith('\n') else word + ' ' if word else ' '
                 temp_file.write(word)
-        os.rename('temp', root + name)
+        os.rename('temp', path_join(root, name))
 
 
 def rename_files(root, items):
     for name in items:
-        logging.info(root + name)
+        logging.info(path_join(root, name))
         if name in ingnore_files:
             continue
         if name == '__init__.py':
@@ -224,7 +230,7 @@ def rename_files(root, items):
             for i in replacements.keys():
                 if name != (name.replace(i, replacements[i])):
                     logging.info('Rename With :: ' + name + ' -> ' + (name.replace(i, replacements[i])))
-                    os.rename(root + name, root + (name.replace(i, replacements[i])))
+                    os.rename(path_join(root, name), path_join(root, name.replace(i, replacements[i])))
         except OSError as e:
             pass
 
@@ -235,11 +241,11 @@ def rename_dir(root, items):
             continue
         for in_root, dirs, files in os.walk(root + folder, topdown=True):
             if files:
-                rename_files(in_root + '/', files)
+                rename_files(in_root, files)
             if dirs:
-                rename_dir(in_root + '/', dirs)
+                rename_dir(in_root, dirs)
         if 'odoo' in folder:
-            os.rename(root + folder, root + folder.replace('odoo', 'flectra'))
+            os.rename(path_join(root, folder), path_join(root, folder.replace('odoo', 'flectra')))
 
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -247,8 +253,8 @@ if os.path.isdir(odoo_path):
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
-        rename_files(root + '/', files)
-        rename_dir(root + '/', dirs)
+        rename_files(root, files)
+        rename_dir(root, dirs)
 else:
     rename_files('', [odoo_path])
 end_time = time.strftime("%Y-%m-%d %H:%M:%S")
