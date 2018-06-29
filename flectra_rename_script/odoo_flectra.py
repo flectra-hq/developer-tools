@@ -216,6 +216,9 @@ def rename_files(root, items):
         logging.info(path_join(root, name))
         if name in ingnore_files:
             continue
+        if name == '__openerp__.py':
+            os.rename(path_join(root, name), path_join(root, '__manifest__.py'))
+            name = '__manifest__.py'
         if name == '__init__.py':
             init_files(root)
         elif name == '__manifest__.py':
