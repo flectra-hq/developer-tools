@@ -132,6 +132,11 @@ ingnore_files = [
     'MANIFEST.in'
 ]
 
+ingnore_py_words = [
+    'OpenERPSession'
+]
+
+
 website_replacements = {
     'https://www.odoo.com': 'https://flectrahq.com',
     'www.odoo.com': 'https://flectrahq.com',
@@ -144,7 +149,6 @@ replace_email = {
     'info@openerp.com': 'info@flectrahq.com',
 }
 
-
 def init_files(root):
     infile = open(path_join(root, '__init__.py'), 'r').read()
     out = open(path_join(root, '__init__.py'), 'w')
@@ -152,7 +156,6 @@ def init_files(root):
         infile = infile.replace(i, init_replacements[i])
     out.write(infile)
     out.close
-
 
 def manifest_files(root):
     temp = {}
@@ -166,7 +169,6 @@ def manifest_files(root):
     out.close()
     content_replacements(root, '__manifest__.py', manifest_replacements)
 
-
 def xml_csv_json_files(root, name):
     infile = open(path_join(root, name), 'r').read()
     out = open(path_join(root, name), 'w')
@@ -177,7 +179,6 @@ def xml_csv_json_files(root, name):
     out.write(infile)
     out.close()
 
-
 def python_files(root, name):
     infile = open(path_join(root, name), 'r').read()
     out = open(path_join(root, name), 'w')
@@ -186,7 +187,6 @@ def python_files(root, name):
     out.write(infile)
     out.close()
     content_replacements(root, name, replacements)
-
 
 def content_replacements(root, name, replace_dict):
     infile = open(path_join(root, name), 'r').readlines()
@@ -200,7 +200,12 @@ def content_replacements(root, name, replace_dict):
                     single_line.append(word)
                     continue
                 for i in replace_dict.keys():
-                    word = word.replace(i, replace_dict[i])
+                    must_replace = True
+                    for ing_word in ingnore_py_words:
+                        if ing_word in word:
+                            must_replace = False
+                    if must_replace:
+                        word = word.replace(i, replace_dict[i])
                 single_line.append(word)
             multilist.append(single_line)
     with open('temp', 'a') as temp_file:
@@ -209,7 +214,6 @@ def content_replacements(root, name, replace_dict):
                 word = word if word.endswith('\n') else word + ' ' if word else ' '
                 temp_file.write(word)
         os.rename('temp', path_join(root, name))
-
 
 def rename_files(root, items):
     for name in items:
@@ -237,7 +241,6 @@ def rename_files(root, items):
         except OSError as e:
             pass
 
-
 def rename_dir(root, items):
     for folder in items:
         if folder in ingnore_dir:
@@ -249,7 +252,6 @@ def rename_dir(root, items):
                 rename_dir(in_root, dirs)
         if 'odoo' in folder:
             os.rename(path_join(root, folder), path_join(root, folder.replace('odoo', 'flectra')))
-
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
