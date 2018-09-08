@@ -136,6 +136,9 @@ ingnore_py_words = [
     'OpenERPSession'
 ]
 
+ignore_xml_words = [
+    'provider_openerp'
+]
 
 website_replacements = {
     'https://www.odoo.com': 'https://flectrahq.com',
@@ -175,7 +178,12 @@ def xml_csv_json_files(root, name):
     for i in replace_email.keys():
         infile = infile.replace(i, replace_email[i])
     for i in xml_replacements.keys():
-        infile = infile.replace(i, xml_replacements[i])
+        must_replace = True
+        for ing_word in ingnore_xml_words:
+            if ing_word in word:
+                must_replace = False
+        if must_replace:        
+            infile = infile.replace(i, xml_replacements[i])
     out.write(infile)
     out.close()
 
