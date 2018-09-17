@@ -179,8 +179,8 @@ def xml_csv_json_files(root, name):
         infile = infile.replace(i, replace_email[i])
     for i in xml_replacements.keys():
         must_replace = True
-        for ing_word in ingnore_xml_words:
-            if ing_word in word:
+        for ing_word in ignore_xml_words:
+            if ing_word in i:
                 must_replace = False
         if must_replace:        
             infile = infile.replace(i, xml_replacements[i])
