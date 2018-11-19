@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 import time
-from shutil import copytree
+import shutil
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -51,17 +51,15 @@ else:
 
 suffix = "/"
 win_suffix = "\\"
-
 while odoo_path.endswith(suffix, len(odoo_path) - 1) or odoo_path.endswith(
         win_suffix, len(odoo_path) - 1):
     odoo_path = odoo_path[:len(odoo_path) - 1]
-
 path_join = os.path.join
-
 logging.info("You Directory is : %s" % odoo_path)
+
 if '--copy' in sys.argv or '-C' in sys.argv or '-c' in sys.argv:
     logging.info('Please wait, copy is being process.')
-    copytree(odoo_path, odoo_path + time.strftime("%Y-%m-%d %H:%M:%S"))
+    shutil.copytree(odoo_path, odoo_path + time.strftime("%Y-%m-%d %H:%M:%S"))
 
 replacements = {
     'odoo': 'flectra',
@@ -74,8 +72,7 @@ replacements = {
     'OpenERP': 'Flectra',
     'OpenErp': 'Flectra',
     'OPENERP': 'FLECTRA',
-    'Part of Flectra.': 'Part of Openerp, Flectra.',
-    'Part of Flectra.': 'Part of OpenERP, Flectra.',
+    'Part of Openerp.': 'Part of Openerp, Flectra.',
 }
 
 xml_replacements = {
@@ -88,8 +85,7 @@ xml_replacements = {
     'OpenERP': 'Flectra',
     'OpenErp': 'Flectra',
     'OPENERP': 'FLECTRA',
-    'Part of Flectra.': 'Part of Openerp, Flectra.',
-    'Part of Flectra.': 'Part of OpenERP, Flectra.',
+    'Part of OpenERP.': 'Part of OpenERP, Flectra.',
 }
 
 init_replacements = {
@@ -118,12 +114,12 @@ re_replacements = {
     'OpenErp': 'OpenErp, Flectra',
 }
 
-ingnore_dir = [
+ignore_dir = [
     'cla',
     'doc',
 ]
 
-ingnore_files = [
+ignore_files = [
     'LICENSE',
     'COPYRIGHT',
     'README.md',
@@ -132,11 +128,8 @@ ingnore_files = [
     'MANIFEST.in'
 ]
 
-ingnore_py_words = [
+ignore_words = [
     'OpenERPSession'
-]
-
-ignore_xml_words = [
     'provider_openerp'
 ]
 
@@ -154,11 +147,11 @@ replace_email = {
 
 def init_files(root):
     infile = open(path_join(root, '__init__.py'), 'r').read()
-    out = open(path_join(root, '__init__.py'), 'w')
     for i in init_replacements.keys():
         infile = infile.replace(i, init_replacements[i])
+    out = open(path_join(root, '__init__.py'), 'w')
     out.write(infile)
-    out.close
+    out.close()
 
 def manifest_files(root):
     temp = {}
@@ -174,18 +167,12 @@ def manifest_files(root):
 
 def xml_csv_json_files(root, name):
     infile = open(path_join(root, name), 'r').read()
-    out = open(path_join(root, name), 'w')
     for i in replace_email.keys():
         infile = infile.replace(i, replace_email[i])
-    for i in xml_replacements.keys():
-        must_replace = True
-        for ing_word in ignore_xml_words:
-            if ing_word in i:
-                must_replace = False
-        if must_replace:        
-            infile = infile.replace(i, xml_replacements[i])
+    out = open(path_join(root, name), 'w')
     out.write(infile)
     out.close()
+    content_replacements(root, name, xml_replacements)
 
 def python_files(root, name):
     infile = open(path_join(root, name), 'r').read()
@@ -209,7 +196,7 @@ def content_replacements(root, name, replace_dict):
                     continue
                 for i in replace_dict.keys():
                     must_replace = True
-                    for ing_word in ingnore_py_words:
+                    for ing_word in ignore_words:
                         if ing_word in word:
                             must_replace = False
                     if must_replace:
@@ -221,15 +208,17 @@ def content_replacements(root, name, replace_dict):
             for word in lines:
                 word = word if word.endswith('\n') else word + ' ' if word else ' '
                 temp_file.write(word)
-        os.rename('temp', path_join(root, name))
+    shutil.copy('temp', path_join(root, name))
+    os.remove('temp')
 
 def rename_files(root, items):
     for name in items:
         logging.info(path_join(root, name))
-        if name in ingnore_files:
+        if name in ignore_files:
             continue
         if name == '__openerp__.py':
-            os.rename(path_join(root, name), path_join(root, '__manifest__.py'))
+            shutil.copy(path_join(root, name), path_join(root, '__manifest__.py'))
+            os.remove(path_join(root, name))
             name = '__manifest__.py'
         if name == '__init__.py':
             init_files(root)
@@ -245,21 +234,20 @@ def rename_files(root, items):
             for i in replacements.keys():
                 if name != (name.replace(i, replacements[i])):
                     logging.info('Rename With :: ' + name + ' -> ' + (name.replace(i, replacements[i])))
-                    os.rename(path_join(root, name), path_join(root, name.replace(i, replacements[i])))
+                    shutil.copy(path_join(root, name), path_join(root, name.replace(i, replacements[i])))
+                    os.remove(path_join(root, name))
         except OSError as e:
             pass
 
 def rename_dir(root, items):
     for folder in items:
-        if folder in ingnore_dir:
+        if folder in ignore_dir:
             continue
         for in_root, dirs, files in os.walk(root + folder, topdown=True):
             if files:
                 rename_files(in_root, files)
             if dirs:
                 rename_dir(in_root, dirs)
-        if 'odoo' in folder:
-            os.rename(path_join(root, folder), path_join(root, folder.replace('odoo', 'flectra')))
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
@@ -271,7 +259,6 @@ if os.path.isdir(odoo_path):
 else:
     rename_files('', [odoo_path])
 end_time = time.strftime("%Y-%m-%d %H:%M:%S")
-
 logging.info('Execution Log :::: ')
 logging.info('Start Time ::: %s' % start_time)
 logging.info('End Time   ::: %s' % end_time)
