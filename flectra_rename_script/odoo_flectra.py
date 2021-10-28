@@ -471,7 +471,8 @@ def replace_content(root, items):
                     for i in temp_file.readlines():
                         line = i.replace(key, value)
                         temp_file_write.write(line)
-                    os.rename('temp_file', file_path)
+                    os.rename(temp_file.name, file_path)
+                    os.remove('temp_file')
                     temp_file.close()
                     temp_file_write.close()
             except UnicodeDecodeError:
