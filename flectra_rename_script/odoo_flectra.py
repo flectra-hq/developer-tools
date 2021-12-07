@@ -8,6 +8,7 @@ import time
 import shutil
 import subprocess
 # import codecs
+import traceback
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -354,16 +355,17 @@ def replace_images():
     path = sys.argv[1]
     image_to_replace = {
         'images/favicon.ico': "addons/web/static/src/img",
-        'images/db_manager.png': "doc/setup/enterprise/db_manager.png",
-        'images/devmode.png': "doc/howtos/web",
+        # 'images/db_manager.png': "doc/setup/enterprise/db_manager.png",
+        # 'images/devmode.png': "doc/howtos/web",
         'images/flectra.png': "addons/web/tests/flectra.png",
         'images/flectrabot.png': "addons/mail/static/src/img/flectrabot.png",
         'images/flectrabot_transparent.png': "addons/mail/static/src/img/flectrabot_transparent.png",
         # 'images/flectra_icon.png': "addons/payment_odoo_by_adyen/static/src/img/flectra_icon.png",
-        'images/flectra_logo_rgb.png': "doc/_extensions/odoo_ext/static/img/flectra_logo_rgb.png",
+        # 'images/flectra_logo_rgb.png': "doc/_extensions/odoo_ext/static/img/flectra_logo_rgb.png",
         'images/flectra_logo_tiny.png': "addons/web/static/src/img/flectra_logo_tiny.png",
         'images/flectra_o.png': "addons/mail/static/src/img/flectra_o.png",
-        'images/logo2.png': "addons/web/static/src/img/logo.png",
+        'images/logo.png': "addons/web/static/src/img/logo.png",
+        'images/logo2.png': "addons/web/static/src/img/logo2.png",
         'images/logo3.png': "addons/web/static/src/img/nologo.png",
         'images/logo_white.png': "flectra/addons/base/static/img/logo_white.png",
         'images/main_partner-image.png': "flectra/addons/base/static/img/main_partner-image.png",
@@ -413,7 +415,7 @@ def replace_images():
         'images/members.png': 'addons/membership/static/description/icon.png',
         'images/timesheets.png': 'addons/hr_timesheet/static/description/icon.png',
         'images/timesheets2.png': 'addons/hr_timesheet/static/description/icon_timesheet.png',
-        'images/link tracker.png': 'addons/utm/static/description/icon.png',
+        'images/link_tracker.png': 'addons/utm/static/description/icon.png',
         # 'images/logo2.png': 'addons/web/static/src/img/logo.png',
         'images/flectra_icon.png': 'addons/web/static/src/img/nologo.png',
         'images/logo_inverse.png': 'addons/web/static/src/img/logo_inverse_white_206px.png',
@@ -422,12 +424,13 @@ def replace_images():
         'images/flectra_logo_tiny_2.png': 'addons/mass_mailing/static/src/img/theme_basic/s_default_image_logo.png',
 
     }
+    
     try:
         for key, value in image_to_replace.items():
             shutil.copy(key, os.path.join(path, value))
             print(key, os.path.join(path, value))
-    except:
-        pass
+    except Exception:
+            traceback.print_exc()
 
 def replace_content(root, items):
 
@@ -440,13 +443,18 @@ def replace_content(root, items):
         # 'https://nightly.flectra.com': 'https://nightly.flectrahq.com',
         # 'https://www.odoo.com/page/': 'https://flectrahq.com/',
         'Odoo': 'Flectra',
-        'Flectra.com': 'Flectrahq.com',
-        'Flectra S.A': 'FlectraHQ, Odoo S.A',
-        'Flectra SA': 'FlectraHQ',
+        'Flectra.com': 'flectrahq.com',
+        'flectra.com': 'flectrahq.com',
+        'Flectra S.A': 'FlectraHQ Inc., Odoo S.A',
+        'Flectra SA': 'FlectraHQ Inc.',
+        'id1272543640': 'id1561830563',
+        'com.odoo.mobile':'com.flectra.flectrahq',
+        'com.flectra.mobile':'com.flectra.flectrahq',
         'Part of Flectra.': 'Part of Odoo, Flectra.',
         'https://apps.flectrahq.com': 'https://store.flectrahq.com',
         'payment_flectra_by_adyen': 'payment_odoo_by_adyen',
         '#875A7B': '#009EFB',
+        '#875a7b': '#2496f6',
         '127.0.0.1:8072': '127.0.0.1:7072',
         'Flectra Server 14.0': 'Flectra Server 2.0',
         'my_default=8072': 'my_default=7072',

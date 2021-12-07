@@ -24,8 +24,8 @@ def update_translation(src, dest):
             else:
                 subprocess.call(
                     ['cp', os.path.join(src, 'addons', i), os.path.join(dest, 'addons', i)])
-    branch = "master-translation-upstream-patch"
-    create_merge_request(dest, branch)
+    # branch = "master-translation-upstream-patch"
+    # create_merge_request(dest, branch)
 
 
 

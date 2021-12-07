@@ -1,10 +1,13 @@
 import os
+from datetime import date
 import subprocess
 import optparse
 import logging
 import sys
-
+skip_list = ["partner_autocomplete","base_setup","crm_iap_lead","crm_iap_lead_enrich","crm_iap_lead_website"]
 arg = sys.argv
+today = date.today()
+brn_name = today.strftime("%d%m%Y")
 
 def update_addons(src, dest):
     src_dir = os.listdir(os.path.join(src, 'addons'))
@@ -18,18 +21,19 @@ def update_addons(src, dest):
                 if 'i18n' in dir_list:
                     dir_list.remove('i18n')
                 for j in dir_list:
-                    subprocess.call(['cp', os.path.join(
-                        src, 'addons', i, j), os.path.join(dest, 'addons', i), '-r'])
+                    if i not in skip_list:
+                        cmd = ['cp', os.path.join(src, 'addons', i, j), os.path.join(dest, 'addons', i), '-r']
+                        subprocess.call(cmd)
             else:
                 subprocess.call(
                     ['cp', os.path.join(src, 'addons', i), os.path.join(dest, 'addons', i)])
-    branch = "master-upstream-patch"
+    branch = "master-upstream-patch-%s" %brn_name
     create_merge_request(dest, branch)
 
 def update_base_addons(src, dest):
     src_dir = os.listdir(os.path.join(src, 'flectra', 'addons'))
     dest_dir = os.listdir(os.path.join(dest, 'flectra', 'addons'))
-    branch = "master-upstream-patch"
+    branch = "master-upstream-patch-%s" %brn_name
     # print(src_dir)
     for i in src_dir:
         print(os.path.join(src, 'flectra', 'addons', i))
@@ -51,7 +55,7 @@ def create_merge_request(dest, branch):
     cmd = dict(
         cmd4=f'cd {dest} && git pull origin master',
         cmd=f"cd {dest} && git checkout -b {branch}",
-        cmd2=f'cd {dest} && git add -A && git commit -m "[PATCH] Upstream patch" && git push origin {branch} -o merge_request.create -o merge_request.target=master',
+        cmd2=f'cd {dest} && git add --all && git commit -a -m "[PATCH] Upstream patch - %s" && git push origin {branch} -o merge_request.create -o merge_request.target=master' %brn_name,
         cmd3=f'cd {dest} && git checkout master && git branch -d {branch}'
     )
     ps_execute(cmd)
@@ -73,7 +77,7 @@ options, args = parser.parse_args()
 src = options.src_path
 dest = options.dest_path
 
-branch = "master-upstream-patch"
+branch = "master-upstream-patch-%s" %brn_name
 if src and dest:
     if not os.path.exists(src):
         print(src, "\tpath does not exist!")
