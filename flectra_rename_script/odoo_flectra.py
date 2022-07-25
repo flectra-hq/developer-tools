@@ -7,6 +7,9 @@ import sys
 import time
 import shutil
 import subprocess
+from pathlib import Path
+from PIL import Image, ImageDraw, ImageFilter
+
 # import codecs
 
 logging.basicConfig(
@@ -40,20 +43,17 @@ so you can have a backup of your real data.
 #######################################################################################################'''
 
 if '--help' in sys.argv or '-H' in sys.argv or '-h' in sys.argv:
-    print(_help)
     os._exit(1)
 
 if len(sys.argv) < 2:
     logging.error(
         'Directory path is required, please follow below instructions.')
-    print(_help)
     os._exit(1)
 else:
     odoo_path = sys.argv[1]
     if not os.path.isdir(odoo_path) and not os.path.exists(odoo_path):
         logging.error(
             'Directory does not exist. Please check for path : %s' % odoo_path)
-        print(_help)
         os._exit(1)
 
 suffix = "/"
@@ -73,7 +73,7 @@ replacements = {
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
     '8069': '7073',
-    # 'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'Part of Odoo.': 'Part of Odoo, Flectra.',
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -86,7 +86,7 @@ xml_replacements = {
     'odoo': 'flectra',
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
-    # 'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'Part of Odoo.': 'Part of Odoo, Flectra.',
     '<openerp>': '<flectra>',
     '</openerp>': '</flectra>',
     # 'openerp': 'flectra',
@@ -112,8 +112,9 @@ rng_replacement = {
 #########################################################################
 
 init_replacements = {
-    # 'Odoo.': 'Odoo, Flectra.',
+    'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
+    'Part of Odoo.': 'Part of Odoo, Flectra.',
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -121,8 +122,9 @@ init_replacements = {
 }
 
 manifest_replacements = {
-    # 'Odoo.': 'Odoo, Flectra.',
+    'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
+    'Part of Odoo.': 'Part of Odoo, Flectra.',
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -173,6 +175,7 @@ replace_website = {
     'www.openerp.com': 'www.flectrahq.com'
 }
 
+
 def init_files(root):
     infile = open(path_join(root, '__init__.py'), 'r').read()
     for i in init_replacements.keys():
@@ -180,6 +183,7 @@ def init_files(root):
     out = open(path_join(root, '__init__.py'), 'w')
     out.write(infile)
     out.close()
+
 
 def manifest_files(root):
     temp = {}
@@ -193,6 +197,7 @@ def manifest_files(root):
     out.close()
     content_replacements(root, '__manifest__.py', manifest_replacements)
 
+
 def xml_csv_json_files(root, name):
     infile = open(path_join(root, name), 'r',
                   encoding='utf-8', errors='replace').read()
@@ -202,6 +207,7 @@ def xml_csv_json_files(root, name):
     out.write(infile)
     out.close()
     content_replacements(root, name, xml_replacements)
+
 
 def python_files(root, name):
     infile = open(path_join(root, name), 'r').read()
@@ -214,37 +220,50 @@ def python_files(root, name):
 
 
 def content_replacements(root, name, replace_dict):
-    infile = open(path_join(root, name), 'r').readlines()
+    path = Path(path_join(root, name))
+    infile = path.read_text()
     ignore_key = ['payment_odoo_by_adyen']
-    multilist = []
-    if infile:
-        for line in infile:
-            words = line.split(' ')
-            single_line = []
-            for word in words:
-                if word.startswith('info@') or word.startswith("'info@") or word.startswith('"info@'):
-                    single_line.append(word)
-                    continue
-                for i in replace_dict.keys():
-                    if i in ignore_key:
-                        pass
-                    else:
-                        must_replace = True
-                        for ing_word in ignore_words:
-                            if ing_word in word:
-                                must_replace = False
-                        if must_replace:
-                            word = word.replace(i, replace_dict[i])
-                single_line.append(word)
-            multilist.append(single_line)
-    with open('temp', 'a') as temp_file:
-        for lines in multilist:
-            for word in lines:
-                word = word if word.endswith(
-                    '\n') else word + ' ' if word else ' '
-                temp_file.write(word)
-    shutil.copy('temp', path_join(root, name))
-    os.remove('temp')
+
+    for i in replace_dict.keys():
+        if i in ignore_key:
+            pass
+        else:
+            infile = infile.replace(i, replace_dict[i])
+    path.write_text(infile)
+
+
+# def content_replacements(root, name, replace_dict):
+#     infile = open(path_join(root, name), 'r').readlines()
+#     ignore_key = ['payment_odoo_by_adyen']
+#     multilist = []
+#     if infile:
+#         for line in infile:
+#             words = line.split(' ')
+#             single_line = []
+#             for word in words:
+#                 if word.startswith('info@') or word.startswith("'info@") or word.startswith('"info@'):
+#                     single_line.append(word)
+#                     continue
+#                 for i in replace_dict.keys():
+#                     if i in ignore_key:
+#                         pass
+#                     else:
+#                         must_replace = True
+#                         for ing_word in ignore_words:
+#                             if ing_word in word:
+#                                 must_replace = False
+#                         if must_replace:
+#                             word = word.replace(i, replace_dict[i])
+#                 single_line.append(word)
+#             multilist.append(single_line)
+#     with open('temp', 'a') as temp_file:
+#         for lines in multilist:
+#             for word in lines:
+#                 word = word if word.endswith(
+#                     '\n') else word + ' ' if word else ' '
+#                 temp_file.write(word)
+#     shutil.copy('temp', path_join(root, name))
+#     os.remove('temp')
 
 
 def rename_files(root, items):
@@ -260,8 +279,8 @@ def rename_files(root, items):
         if name == '__init__.py':
             init_files(root)
         elif name == '__manifest__.py':
-            # manifest_files(root)
-            continue
+            manifest_files(root)
+            # continue
         else:
             sp_name = name.split('.')
             if len(sp_name) >= 2 and sp_name[-1] in ['xml', 'csv', 'json', 'html']:
@@ -337,21 +356,23 @@ def replace_rng():
     except:
         pass
 
+
 def replace_addons():
     try:
         path = sys.argv[1]
         dirs = os.listdir(path + '/addons')
         for i in dirs:
             if 'odoo_referral' in i:
-                print(i)
                 temp = i.replace('odoo', 'flectra')
                 subprocess.run(
                     ['mv', '-T', '{}/addons/{}'.format(path, i), '{}/addons/{}'.format(path, temp)])
     except:
         pass
 
-def replace_images():
+
+def replace_images(root, files):
     path = sys.argv[1]
+
     image_to_replace = {
         'images/favicon.ico': "addons/web/static/src/img",
         'images/db_manager.png': "doc/setup/enterprise/db_manager.png",
@@ -399,7 +420,7 @@ def replace_images():
         'images/Purchase.png': "addons/purchase/static/description/icon.png",
         'images/Recruitment.png': "addons/hr_recruitment/static/description/icon.png",
         'images/repairs.png': "addons/repair/static/description/icon.png",
-        'images/Sales.png': "addons/sale_management/static/description/icon.png",
+        'images/Sales.png': "addons/sale/static/description/icon.png",
         'images/skills-management.png': "addons/hr_skills/static/description/icon.png",
         'images/sms-marketing.png': "addons/mass_mailing_sms/static/description/icon.png",
         'images/time-off.png': "addons/hr_holidays/static/description/icon.png",
@@ -422,15 +443,20 @@ def replace_images():
         'images/flectra_logo_tiny_2.png': 'addons/mass_mailing/static/src/img/theme_basic/s_default_image_logo.png',
 
     }
-    try:
-        for key, value in image_to_replace.items():
-            shutil.copy(key, os.path.join(path, value))
-            print(key, os.path.join(path, value))
-    except:
-        pass
+    for name in files:
+        if name.endswith(".png") or name.endswith(".jpg"):
+            for key, value in image_to_replace.items():
+                image_path = os.path.join(root, name)
+                if image_path.endswith(value):
+                    shutil.copy(key, os.path.join(path, value))
+    # try:
+    #     for key, value in image_to_replace.items():
+    #         shutil.copy(key, os.path.join(path, value))
+    # except:
+    #     pass
+
 
 def replace_content(root, items):
-
     ignore_files = ['png', 'jpg', 'pyc']  # 'po', 'pot'
     replace_items = {
         'flectra.com': 'flectrahq.com',
@@ -495,6 +521,7 @@ def delete_svg():
     except:
         pass
 
+
 def replace_manifest():
     path = sys.argv[1]
     dirs = os.listdir(f"{path}/addons")
@@ -510,13 +537,15 @@ def replace_manifest():
                     line = line.replace('Odoo', 'Flectra')
                     ftemp.write(line)
                 os.rename("/tmp/manifest.txt",
-                        f"{manifest_path}/__manifest__.py")
+                          f"{manifest_path}/__manifest__.py")
+
 
 def change_release():
     try:
         path = os.path.join(sys.argv[1], "flectra/release.py")
         # line_to_find = ("version_info = (" + str(ODOO_VERSION), )
-        line_to_replace = (("version_info = (" + str(ODOO_VERSION), "version_info = (" + str(FLECTRA_VERSION)), ("author = 'OpenERP S.A.'", "author = 'FlectraHQ, OpenERP S.A.'"))
+        line_to_replace = (("version_info = (" + str(ODOO_VERSION), "version_info = (" + str(FLECTRA_VERSION)),
+                           ("author = 'OpenERP S.A.'", "author = 'FlectraHQ, OpenERP S.A.'"))
 
         logging.info(path)
         for replace in line_to_replace:
@@ -532,6 +561,7 @@ def change_release():
     except:
         pass
 
+
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
     for root, dirs, files in os.walk(odoo_path, topdown=True):
@@ -539,8 +569,9 @@ if os.path.isdir(odoo_path):
         dirs[:] = [d for d in dirs if not d[0] == '.']
         rename_files(root, files)
         rename_dir(root, dirs)
+        replace_images(root, files)
     replace_rng()
-    replace_images()
+    # replace_images()
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
