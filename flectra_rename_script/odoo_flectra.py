@@ -8,7 +8,7 @@ import time
 import shutil
 import subprocess
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter
+# from PIL import Image, ImageDraw, ImageFilter
 
 # import codecs
 
@@ -18,8 +18,8 @@ logging.basicConfig(
     datefmt='%a, %d %b %Y %H:%M:%S'
 )
 
-FLECTRA_VERSION = 2
-ODOO_VERSION = 14
+FLECTRA_VERSION = 3
+ODOO_VERSION = 16
 
 _help = '''#######################################################################################################
 Run command  : python odoo_flectra.py <path> [--copy/-c] [--help/-h]
@@ -70,6 +70,8 @@ if '--copy' in sys.argv or '-C' in sys.argv or '-c' in sys.argv:
 
 replacements = {
     'odoo': 'flectra',
+    ', ODOO_MODULE_RE': ', FLECTRA_MODULE_RE',
+    'ODOO_': 'FLECTRA_',
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
     '8069': '7073',
@@ -115,6 +117,7 @@ init_replacements = {
     'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
     'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'ODOO_': 'FLECTRA_',
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -125,6 +128,7 @@ manifest_replacements = {
     'Odoo.': 'Odoo, Flectra.',
     'odoo': 'flectra',
     'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'OdooEditor':'FlectraEditor'
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -268,7 +272,7 @@ def content_replacements(root, name, replace_dict):
 
 def rename_files(root, items):
     for name in items:
-        logging.info(path_join(root, name))
+        # logging.info(path_join(root, name))
         if name in ignore_files:
             continue
         if name == '__openerp__.py':
@@ -285,7 +289,7 @@ def rename_files(root, items):
             sp_name = name.split('.')
             if len(sp_name) >= 2 and sp_name[-1] in ['xml', 'csv', 'json', 'html']:
                 xml_csv_json_files(root, name)
-            elif sp_name[-1] in ['py', 'css', 'less', 'js', 'yml']:
+            elif sp_name[-1] in ['py', 'css', 'less', 'js', 'yml','scss']:
                 python_files(root, name)
                 # continue
         try:
@@ -385,6 +389,7 @@ def replace_images(root, files):
         'images/flectra_logo_tiny.png': "addons/web/static/src/img/flectra_logo_tiny.png",
         'images/flectra_o.png': "addons/mail/static/src/img/flectra_o.png",
         'images/logo2.png': "addons/web/static/src/img/logo.png",
+        'images/logo22.png': "addons/web/static/img/logo2.png",
         'images/logo3.png': "addons/web/static/src/img/nologo.png",
         'images/logo_white.png': "flectra/addons/base/static/img/logo_white.png",
         'images/main_partner-image.png': "flectra/addons/base/static/img/main_partner-image.png",
@@ -435,7 +440,7 @@ def replace_images(root, files):
         'images/timesheets.png': 'addons/hr_timesheet/static/description/icon.png',
         'images/timesheets2.png': 'addons/hr_timesheet/static/description/icon_timesheet.png',
         'images/link tracker.png': 'addons/utm/static/description/icon.png',
-        # 'images/logo2.png': 'addons/web/static/src/img/logo.png',
+        'images/logo2.png': 'addons/web/static/src/img/logo.png',
         'images/flectra_icon.png': 'addons/web/static/src/img/nologo.png',
         'images/logo_inverse.png': 'addons/web/static/src/img/logo_inverse_white_206px.png',
         'images/logo4.png': 'addons/web/tests/flectra.png',
@@ -457,7 +462,7 @@ def replace_images(root, files):
 
 
 def replace_content(root, items):
-    ignore_files = ['png', 'jpg', 'pyc']  # 'po', 'pot'
+    ignore_files = ['png', 'jpg', 'pyc', 'po', 'pot']
     replace_items = {
         'flectra.com': 'flectrahq.com',
         'odoo.com': 'flectrahq.com',
@@ -488,9 +493,9 @@ def replace_content(root, items):
                 if files[-2:] in ignore_files or files[-3:] in ignore_files:
                     continue
                 else:
-                    logging.info(path_join(root, files))
+                    # logging.info(path_join(root, files))
                     file_path = os.path.join(root, files)
-                    logging.info(file_path)
+                    # logging.info(file_path)
                     temp_file = open(
                         file_path, 'r+', encoding='utf-8')
                     temp_file_write = open('temp_file', 'w', encoding='utf-8')
@@ -560,8 +565,21 @@ def change_release():
             temp_file_write.close()
     except:
         pass
+def change_special_dirs(odoo_path):
+    os.rename(os.path.join(odoo_path,"addons/web_editor/static/src/js/editor/odoo-editor"),
+    os.path.join(odoo_path,"addons/web_editor/static/src/js/editor/flectra-editor"))
+
+    # os.rename(os.path.join(odoo_path,"addons/web_editor/static/src/js/editor/flectra-editor/src/OdooEditor.js"),
+    # os.path.join(odoo_path,"addons/web_editor/static/src/js/editor/flectra-editor/src/FlectraEditor.js"))
+
+    os.rename(os.path.join(odoo_path,"addons/website/static/src/snippets/s_mega_menu_odoo_menu"),
+    os.path.join(odoo_path,"addons/website/static/src/snippets/s_mega_menu_flectra_menu"))
+
+    os.rename(os.path.join(odoo_path,"addons/web/static/lib/odoo_ui_icons"),
+    os.path.join(odoo_path,"addons/web/static/lib/flectra_ui_icons"))
 
 
+    
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
     for root, dirs, files in os.walk(odoo_path, topdown=True):
@@ -571,13 +589,14 @@ if os.path.isdir(odoo_path):
         rename_dir(root, dirs)
         replace_images(root, files)
     replace_rng()
-    # replace_images()
+    # ####### replace_images()
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
         replace_content(root, files)
     change_release()
     delete_svg()
+    change_special_dirs(odoo_path)
 
 else:
     rename_files('', [odoo_path])
