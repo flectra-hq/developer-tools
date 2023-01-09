@@ -375,6 +375,7 @@ def replace_addons():
 
 
 def replace_images(root, files):
+    # print ("REPLACING IMAGE --- ",root, files)
     path = sys.argv[1]
 
     image_to_replace = {
@@ -433,6 +434,7 @@ def replace_images(root, files):
         'images/Survey.png': "addons/survey/static/description/icon.png",
         'images/apps.png': "flectra/addons/base/static/description/modules.png",
         'images/setting.png': "flectra/addons/base/static/description/settings.png",
+        'images/setting.svg': "flectra/addons/base/static/description/settings.svg",
         'images/flectra2.png': "flectra/addons/base/tests/flectra.png",
         'images/events-organization.png': "addons/event/static/description/icon.png",
         'images/dashboards2.png': "flectra/addons/base/static/description/board.png",
@@ -451,6 +453,16 @@ def replace_images(root, files):
         'images/link_tracker.png': 'addons/utm/static/description/icon.png',
         'images/events-organization.png': "addons/event/static/description/icon.png",
         
+        'images/Attendances.svg': "addons/hr_attendance/static/description/icon.svg",
+        'images/CRM.svg': "addons/crm/static/description/icon.svg",
+        'images/blog.svg': "addons/website_blog/static/description/icon.svg",
+        'images/calendar.svg': "addons/calendar/static/description/icon.svg",
+        'images/contacts.svg': "addons/contacts/static/description/icon.svg",
+        'images/dashboards.svg': "addons/board/static/description/icon.svg",
+        'images/discuss.svg': "addons/mail/static/description/icon.svg",
+        'images/e-commerce.svg': "addons/website_sale/static/description/icon.svg",
+        'images/elearning.svg': "addons/website_slides/static/description/icon.svg",
+        'images/email-marketing.svg': "addons/mass_mailing/static/description/icon.svg",
         'images/employees.svg':"addons/hr/static/description/icon.svg",
         'images/events.svg':"addons/website_event/static/description/icon.svg",
         'images/expenses.svg':"addons/hr_expense/static/description/icon.svg",
@@ -479,9 +491,13 @@ def replace_images(root, files):
         'images/link tracker.svg': 'addons/utm/static/description/icon.svg',
         'images/events-organization.svg':"addons/event/static/description/icon.svg",
 
+        'images/spreadsheet_dashboard.png': "flectra/addons/spreadsheet_dashboard/static/description/icon.png",
+        'images/spreadsheet_dashboard.svg': "flectra/addons/spreadsheet_dashboard/static/description/icon.svg",
+        
+
     }
     for name in files:
-        if name.endswith(".png") or name.endswith(".jpg"):
+        if name.endswith(".png") or name.endswith(".jpg") or name.endswith(".svg"):
             for key, value in image_to_replace.items():
                 image_path = os.path.join(root, name)
                 if image_path.endswith(value):
@@ -494,7 +510,7 @@ def replace_images(root, files):
 
 
 def replace_content(root, items):
-    ignore_files = ['png', 'jpg', 'pyc', 'po', 'pot']
+    ignore_files = ['png', 'jpg', 'pyc'] #'po', 'pot']
     replace_items = {
         'flectra.com': 'flectrahq.com',
         'odoo.com': 'flectrahq.com',
@@ -553,8 +569,8 @@ def delete_svg():
                 os.remove(f"{path}/{i}/static/description/icon.svg")
             except FileNotFoundError:
                 pass
-        for i in svg_icons:
-            os.remove(f"{base_path}/base/static/description/{i}")
+        # for i in svg_icons:
+        #     os.remove(f"{base_path}/base/static/description/{i}")
     except:
         pass
 
@@ -614,6 +630,7 @@ def change_special_dirs(odoo_path):
     
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
+    # delete_svg()
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
@@ -621,15 +638,13 @@ if os.path.isdir(odoo_path):
         rename_dir(root, dirs)
         replace_images(root, files)
     replace_rng()
-    # ####### replace_images()
+    # replace_images(root, files)
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
         replace_content(root, files)
     change_release()
-    delete_svg()
     change_special_dirs(odoo_path)
-
 else:
     rename_files('', [odoo_path])
 end_time = time.strftime("%Y-%m-%d %H:%M:%S")
