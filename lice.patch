@@ -1,0 +1,19 @@
+diff --git a/flectra/addons/base/models/ir_module.py b/flectra/addons/base/models/ir_module.py
+index 10d0dc1c4..73a81867c 100644
+--- a/flectra/addons/base/models/ir_module.py
++++ b/flectra/addons/base/models/ir_module.py
+@@ -298,9 +298,11 @@ class Module(models.Model):
+         ('AGPL-3', 'Affero GPL-3'),
+         ('LGPL-3', 'LGPL Version 3'),
+         ('Other OSI approved licence', 'Other OSI Approved License'),
+-        ('OEEL-1', 'Flectra Professional Edition License v1.0'),
+-        ('OPL-1', 'Flectra Proprietary License v1.0'),
+-        ('Other proprietary', 'Other Proprietary')
++        ('OEEL-1', 'Odoo Enterprise Edition License v1.0'),
++        ('OPL-1', 'Odoo Proprietary License v1.0'),
++        ('Other proprietary', 'Other Proprietary'),
++        ('FPL-1', 'Flectra Proprietary License v1.0'),
++        ('FPEL-1', 'Flectra Professional Edition License v1.0'),
+     ], string='License', default='LGPL-3', readonly=True)
+     menus_by_module = fields.Text(string='Menus', compute='_get_views', store=True)
+     reports_by_module = fields.Text(string='Reports', compute='_get_views', store=True)
