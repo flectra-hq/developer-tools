@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/python3
-
+#2222
 import logging
 import os
 import sys
@@ -70,12 +70,15 @@ if '--copy' in sys.argv or '-C' in sys.argv or '-c' in sys.argv:
 
 replacements = {
     'odoo': 'flectra',
+    'odoo.com': 'flectrahq.com',
     ', ODOO_MODULE_RE': ', FLECTRA_MODULE_RE',
     'ODOO_': 'FLECTRA_',
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
     '8069': '7073',
     'Part of Odoo.': 'Part of Odoo, Flectra.',
+    'flectra.com' :'flectrahq.com',
+    'Flectra Enterprise' : 'Flectra Professional'
     # 'openerp': 'flectra',
     # 'Openerp': 'Flectra',
     # 'OpenERP': 'Flectra',
@@ -86,6 +89,8 @@ replacements = {
 
 xml_replacements = {
     'odoo': 'flectra',
+    'odoo.com': 'flectrahq.com',
+    'flectra.com' :'flectrahq.com',
     'Odoo': 'Flectra',
     'ODOO': 'FLECTRA',
     'Part of Odoo.': 'Part of Odoo, Flectra.',
@@ -167,6 +172,12 @@ website_replacements = {
     'www.odoo.com': 'https://flectrahq.com',
     'https://www.openerp.com': 'https://flectrahq.com',
     'www.opernerp.com': 'https://flectrahq.com',
+    'flectra.com': 'flectrahq.com',
+    'https://www.flectra.com/': 'https://www.flectrahq.com/',
+    'odoo.com': 'flectrahq.com',
+    "http://www.flectra.com/app/website?utm_source=db&amp;utm_medium=website":"http://www.flectrahq.com/website?utm_source=db&amp;utm_medium=website",
+    'https://website.api.flectra.com':'https://website.api.flectrahq.com',
+    'https://flectra.com/': 'https://flectrahq.com/',
 }
 
 replace_email = {
@@ -176,7 +187,10 @@ replace_email = {
 
 replace_website = {
     'www.odoo.com': 'www.flectrahq.com',
-    'www.openerp.com': 'www.flectrahq.com'
+    'www.openerp.com': 'www.flectrahq.com',
+    'www.flectra.com': 'www.flectrahq.com',
+    'flectra.com': 'flectrahq.com',
+    'odoo.com': 'flectrahq.com',
 }
 
 
@@ -295,8 +309,8 @@ def rename_files(root, items):
         try:
             for i in replacements.keys():
                 if name != (name.replace(i, replacements[i])):
-                    logging.info('Rename With :: ' + name +
-                                 ' -> ' + (name.replace(i, replacements[i])))
+                    # logging.info('Rename With :: ' + name +
+                    #              ' -> ' + (name.replace(i, replacements[i])))
                     shutil.copy(path_join(root, name), path_join(
                         root, name.replace(i, replacements[i])))
                     os.remove(path_join(root, name))
@@ -375,6 +389,7 @@ def replace_addons():
 
 
 def replace_images(root, files):
+    # print ("REPLACING IMAGE --- ",root, files)
     path = sys.argv[1]
 
     image_to_replace = {
@@ -446,10 +461,64 @@ def replace_images(root, files):
         'images/logo4.png': 'addons/web/tests/flectra.png',
         'images/whitelogo.png': 'addons/point_of_sale/static/src/img/logo.png',
         'images/flectra_logo_tiny_2.png': 'addons/mass_mailing/static/src/img/theme_basic/s_default_image_logo.png',
+        'images/members.png': 'addons/membership/static/description/icon.png',
+        'images/timesheets.png': 'addons/hr_timesheet/static/description/icon.png',
+        'images/link_tracker.png': 'addons/utm/static/description/icon.png',
+        'images/events-organization.png': "addons/event/static/description/icon.png",
 
+        'images/Attendances.svg': "addons/hr_attendance/static/description/icon.svg",
+        'images/CRM.svg': "addons/crm/static/description/icon.svg",
+        'images/blog.svg': "addons/website_blog/static/description/icon.svg",
+        'images/calendar.svg': "addons/calendar/static/description/icon.svg",
+        'images/contacts.svg': "addons/contacts/static/description/icon.svg",
+        'images/dashboards.svg': "addons/board/static/description/icon.svg",
+        'images/discuss.svg': "addons/mail/static/description/icon.svg",
+        'images/e-commerce.svg': "addons/website_sale/static/description/icon.svg",
+        'images/elearning.svg': "addons/website_slides/static/description/icon.svg",
+        'images/email-marketing.svg': "addons/mass_mailing/static/description/icon.svg",
+        'images/employees.svg':"addons/hr/static/description/icon.svg",
+        'images/events.svg':"addons/website_event/static/description/icon.svg",
+        'images/expenses.svg':"addons/hr_expense/static/description/icon.svg",
+        'images/Fleet.svg':"addons/fleet/static/description/icon.svg",
+        'images/forum.svg':"addons/website_forum/static/description/icon.svg",
+        'images/Inventory.svg':"addons/stock/static/description/icon.svg",
+        'images/livechat.svg':"addons/im_livechat/static/description/icon.svg",
+        'images/lunch.svg':"addons/lunch/static/description/icon.svg",
+        'images/maintenance.svg':"addons/maintenance/static/description/icon.svg",
+        'images/Manufacturing.svg':"addons/mrp/static/description/icon.svg",
+        'images/notes.svg':"addons/note/static/description/icon.svg",
+        'images/online_job.svg':"addons/website_hr_recruitment/static/description/icon.svg",
+        'images/Point_of_Sale.svg':"addons/point_of_sale/static/description/icon.svg",
+        'images/Project.svg':"addons/project/static/description/icon.svg",
+        'images/Purchase.svg':"addons/purchase/static/description/icon.svg",
+        'images/Recruitment.svg':"addons/hr_recruitment/static/description/icon.svg",
+        'images/repairs.svg':"addons/repair/static/description/icon.svg",
+        'images/Sales.svg':"addons/sale_management/static/description/icon.svg",
+        'images/Sales_Manage.png':"addons/sale_management/static/description/icon.png",
+        'images/skills-management.svg':"addons/hr_skills/static/description/icon.svg",
+        'images/sms-marketing.svg':"addons/mass_mailing_sms/static/description/icon.svg",
+        'images/time-off.svg':"addons/hr_holidays/static/description/icon.svg",
+        'images/website.svg':"addons/website/static/description/icon.svg",
+        'images/Survey.svg':"addons/survey/static/description/icon.svg",
+        'images/members.svg': 'addons/membership/static/description/icon.svg',
+        'images/timesheets.svg': 'addons/hr_timesheet/static/description/icon.svg',
+        'images/link tracker.svg': 'addons/utm/static/description/icon.svg',
+        'images/events-organization.svg':"addons/event/static/description/icon.svg",
+        'images/spreadsheet_dashboard.png': "addons/spreadsheet_dashboard/static/description/icon.png",
+        'images/spreadsheet_dashboard.svg': "addons/spreadsheet_dashboard/static/description/icon.svg",
+        'images/setting.png': "flectra/addons/base/static/description/settings.png",
+        'images/setting.svg': "flectra/addons/base/static/description/settings.svg",
+        'images/dashboards2.png': "flectra/addons/base/static/description/board.png",
+        'images/dashboards2.svg': "flectra/addons/base/static/description/board.svg",
+        'images/modules.png': "flectra/addons/base/static/description/modules.png",
+        'images/modules.svg': "flectra/addons/base/static/description/modules.svg",
+        'images/data_cleaning_icon.png': "addons/data_recycle/static/description/icon.png",
+        'images/data_cleaning_icon.svg': "addons/data_recycle/static/description/icon.svg",
+        'images/flectra_logo.svg':"addons/web/static/img/flectra_logo.svg",
+        'images/flectra_logo_dark.svg':"addons/web/static/img/flectra_logo_dark.svg"
     }
     for name in files:
-        if name.endswith(".png") or name.endswith(".jpg"):
+        if name.endswith(".png") or name.endswith(".jpg") or name.endswith(".svg") or name.endswith(".ico"):
             for key, value in image_to_replace.items():
                 image_path = os.path.join(root, name)
                 if image_path.endswith(value):
@@ -462,10 +531,14 @@ def replace_images(root, files):
 
 
 def replace_content(root, items):
-    ignore_files = ['png', 'jpg', 'pyc', 'po', 'pot']
+    ignore_files = ['png', 'jpg', 'pyc' ,'po', 'pot']
     replace_items = {
         'flectra.com': 'flectrahq.com',
+        'https://www.flectra.com/': 'https://www.flectrahq.com/',
         'odoo.com': 'flectrahq.com',
+        "http://www.flectra.com/app/website?utm_source=db&amp;utm_medium=website":"http://www.flectrahq.com/website?utm_source=db&amp;utm_medium=website",
+        'https://website.api.flectra.com':'https://website.api.flectrahq.com',
+        'https://flectra.com/': 'https://flectrahq.com/',
         # 'http://www.flectra.com': 'http://www.flectrahq.com',
         # 'https://iap.flectra.com': 'https://iap.flectrahq.com',
         # 'https://nightly.flectra.com': 'https://nightly.flectrahq.com',
@@ -516,13 +589,13 @@ def delete_svg():
         base_path = sys.argv[1] + '/flectra/addons'
         dirs = os.listdir(path)
         svg_icons = ['board.svg', 'modules.svg', 'settings.svg']
-        for i in dirs:
-            try:
-                os.remove(f"{path}/{i}/static/description/icon.svg")
-            except FileNotFoundError:
-                pass
-        for i in svg_icons:
-            os.remove(f"{base_path}/base/static/description/{i}")
+        # for i in dirs:
+        #     try:
+        #         os.remove(f"{path}/{i}/static/description/icon.svg")
+        #     except FileNotFoundError:
+        #         pass
+        # for i in svg_icons:
+        #     os.remove(f"{base_path}/base/static/description/{i}")
     except:
         pass
 
@@ -578,10 +651,20 @@ def change_special_dirs(odoo_path):
     os.rename(os.path.join(odoo_path,"addons/web/static/lib/odoo_ui_icons"),
     os.path.join(odoo_path,"addons/web/static/lib/flectra_ui_icons"))
 
+    shutil.copy(os.path.join('images/flectrabot.png'),os.path.join(odoo_path,"addons/mail/static/src/img/flectrabot.png"))
 
     
+def disable_iap_apps(odoo_path):
+    iap_app = ['crm_iap_enrich','crm_iap_mine','partner_autocomplete','snailmail','sms']
+    for app in iap_app:
+        path = Path(path_join(odoo_path, 'addons',app,'__manifest__.py'))
+        infile = path.read_text()
+        infile = infile.replace("'auto_install': True", "'auto_install': False")
+        path.write_text(infile)
+
 start_time = time.strftime("%Y-%m-%d %H:%M:%S")
 if os.path.isdir(odoo_path):
+    
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
@@ -589,17 +672,36 @@ if os.path.isdir(odoo_path):
         rename_dir(root, dirs)
         replace_images(root, files)
     replace_rng()
-    # ####### replace_images()
+    replace_images(root, files)
     for root, dirs, files in os.walk(odoo_path, topdown=True):
         files = [f for f in files if not f[0] == '.']
         dirs[:] = [d for d in dirs if not d[0] == '.']
         replace_content(root, files)
     change_release()
-    delete_svg()
     change_special_dirs(odoo_path)
-
+    disable_iap_apps(odoo_path)
 else:
     rename_files('', [odoo_path])
+try:
+    shutil.copy(os.path.join('images/favicon.ico'),os.path.join(odoo_path,"addons/web/static/img/favicon.ico"))
+    shutil.copy(os.path.join('images/flectrabot.png'),os.path.join(odoo_path,"addons/mail/static/src/img/flectrabot.png"))
+    shutil.copy(os.path.join('images/flectra_logo_tiny.png'),os.path.join(odoo_path,"addons/web/static/img/flectra_logo_tiny.png"))
+    
+    shutil.copy(os.path.join('images/flectra_logo.svg'),os.path.join(odoo_path,"addons/web/static/img/flectra_logo.svg"))
+    shutil.copy(os.path.join('images/flectra_logo.svg'),os.path.join(odoo_path,"addons/web/static/img/flectra_logo_dark.svg"))
+
+    logging.info("File copied successfully.")
+# If source and destination are same
+except shutil.SameFileError:
+    logging.error("Source and destination represents the same file.")
+# If there is any permission issue
+except PermissionError:
+    logging.error("Permission denied.")
+ 
+# For other errors
+except:
+    logging.error("Error occurred while copying file.")
+
 end_time = time.strftime("%Y-%m-%d %H:%M:%S")
 logging.info('Execution Log :::: ')
 logging.info('Start Time ::: %s' % start_time)
