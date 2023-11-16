@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="43.3492mm" height="43.3492mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 4334.92 4334.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil1 {fill:url(#id0);fill-rule:nonzero}
+    .fil4 {fill:url(#id1);fill-rule:nonzero}
+    .fil3 {fill:url(#id2);fill-rule:nonzero}
+    .fil2 {fill:url(#id3);fill-rule:nonzero}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="1669.16" y1="4293.54" x2="1669.16" y2="2034.58">
+   <stop offset="0" style="stop-opacity:1; stop-color:#00C489"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#19E3A6"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="1669.16" y1="2283.73" x2="1669.16" y2="41.38">
+   <stop offset="0" style="stop-opacity:1; stop-color:#0382F3"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#33A0FF"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="2790.33" y1="2283.73" x2="2790.33" y2="41.39">
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="3336.17" y1="2034.59" x2="3336.17" y2="1536.15">
+   <stop offset="0" style="stop-opacity:1; stop-color:#FFC2CC"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FFF2F4"/>
+  </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" y="0.01" width="4334.9" height="4334.9"/>
+  <g id="_2390538871808">
+   <path class="fil0" d="M1918.31 664.26c0,-137.35 -111.68,-249.15 -249.15,-249.15 -137.47,0 -249.15,111.8 -249.15,249.15 0,137.34 111.68,249.15 249.15,249.15 137.47,0 249.15,-111.81 249.15,-249.15z"/>
+   <path class="fil0" d="M1420.01 1660.85c0,137.35 111.68,249.15 249.15,249.15 137.47,0 249.15,-111.8 249.15,-249.15 0,-137.34 -111.68,-249.14 -249.15,-249.14 -137.47,0 -249.15,111.8 -249.15,249.14z"/>
+   <path class="fil1" d="M2042.88 2034.58l-747.44 0c-68.86,0 -124.58,55.72 -124.58,124.58l0 2009.8c0,68.86 55.72,124.58 124.58,124.58l498.29 -0.01c33.09,0 64.72,-13.14 88.08,-36.5l249.15 -249.15c48.66,-48.65 48.66,-127.49 0,-176.15l-161.07 -161.07 161.08 -161.07c48.65,-48.66 48.65,-127.5 0,-176.16l-161.08 -161.07 161.08 -161.07c23.35,-23.36 36.49,-54.99 36.49,-88.08l0 -764.06c0,-68.85 -55.72,-124.57 -124.58,-124.57l0 0z"/>
+   <path class="fil2" d="M3288.63 2034.58c-68.61,0 -124.57,-55.84 -124.57,-124.58l0 -373.84 224.33 299.15c16.3,21.65 24.82,47.45 24.82,74.7 0,68.73 -55.96,124.57 -124.58,124.57l0 0z"/>
+   <path class="fil3" d="M3587.9 1685.8l-423.84 -564.73 0 -581.39c0,-274.82 -223.6,-498.3 -498.3,-498.3l-622.88 0c-68.86,0 -124.57,55.72 -124.57,124.58 0,68.86 55.71,124.58 124.57,124.58l622.88 -0.01c137.47,0 249.15,111.8 249.15,249.15l0 1370.33c0,206.08 167.64,373.72 373.72,373.72 206.08,0 373.73,-167.64 373.73,-373.72 0,-81.51 -25.79,-159.01 -74.45,-224.21l-0.01 0z"/>
+   <path class="fil4" d="M2042.88 41.38l-747.45 0c-343.55,0 -622.87,279.44 -622.87,622.88l0 1245.75c0,206.08 167.64,373.72 373.73,373.72l1245.75 0c206.08,0 373.72,-167.65 373.72,-373.73l0 -1245.74c0,-343.44 -279.32,-622.88 -622.87,-622.88l-0.01 0zm-373.72 498.3c68.8,0 124.58,55.76 124.58,124.58 0,68.8 -55.78,124.57 -124.58,124.57 -68.8,0 -124.58,-55.77 -124.58,-124.57 0,-68.82 55.78,-124.58 124.58,-124.58zm0 1245.75c-68.8,0 -124.58,-55.77 -124.58,-124.58 0,-68.81 55.78,-124.57 124.58,-124.57 68.8,0 124.58,55.76 124.58,124.57 0,68.8 -55.78,124.58 -124.58,124.58zm373.72 -498.3l-747.45 0c-68.85,0 -124.57,-55.72 -124.57,-124.58 0,-68.85 55.72,-124.57 124.57,-124.57l747.45 0c68.86,0 124.58,55.72 124.58,124.58 0,68.86 -55.72,124.57 -124.58,124.57l0 0z"/>
+  </g>
+ </g>
+</svg>

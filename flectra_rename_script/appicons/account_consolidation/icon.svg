@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="43.3492mm" height="43.3492mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 4334.92 4334.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil4 {fill:url(#id0);fill-rule:nonzero}
+    .fil1 {fill:url(#id1);fill-rule:nonzero}
+    .fil3 {fill:url(#id2);fill-rule:nonzero}
+    .fil2 {fill:url(#id3);fill-rule:nonzero}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="3741.58" y1="4289.39" x2="3741.58" y2="3184.03">
+   <stop offset="0" style="stop-opacity:1; stop-color:#F77B09"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FF9C40"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="2171.64" y1="3564.01" x2="2171.64" y2="40.67">
+   <stop offset="0" style="stop-opacity:1; stop-color:#0382F3"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#33A0FF"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" x1="2169.9" y1="4289.39" x2="2169.9" y2="3184.03">
+   <stop offset="0" style="stop-opacity:1; stop-color:#FBB130"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FFC259"/>
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="598.22" y1="4289.39" x2="598.22" y2="3184.03">
+   <stop offset="0" style="stop-opacity:1; stop-color:#00C489"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#19E3A6"/>
+  </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" y="0.01" width="4334.9" height="4334.9"/>
+  <g id="_2743474317616">
+   <path class="fil1" d="M3443.9 2298.8l-916.17 -198.13c-126.27,-27.3 -217.92,-140.9 -217.92,-270.09l0 -1316.45 351.62 351.62c53.95,53.96 141.44,53.96 195.4,0 53.95,-53.95 53.95,-141.44 0,-195.39l-589.22 -589.22c-53.96,-53.96 -141.44,-53.96 -195.4,0l-589.23 589.23c-53.95,53.96 -53.95,141.44 0,195.39l1.73 1.73c53.96,53.95 141.44,53.95 195.4,0l353.35 -353.36 0 1316.45c0,129.2 -91.65,242.78 -217.93,270.09l-916.18 198.14c-252.55,54.62 -435.85,281.8 -435.85,540.2l0 724.99 276.34 0 0 -725c0,-129.19 91.66,-242.79 217.92,-270.09l916.18 -198.14c57.18,-12.36 110.77,-33.66 159.53,-62.07l0 1255.3 276.34 0.01 0 -1255.3c48.75,28.42 102.33,49.7 159.52,62.07l916.17 198.14c126.27,27.3 217.92,140.9 217.92,270.09l0 725 276.34 -0.01 0 -725c-0.01,-258.39 -183.31,-485.57 -435.86,-540.2z"/>
+   <circle class="fil2" cx="598.22" cy="3736.71" r="552.68"/>
+   <circle class="fil3" cx="2169.9" cy="3736.71" r="552.68"/>
+   <circle class="fil4" cx="3741.58" cy="3736.71" r="552.68"/>
+  </g>
+ </g>
+</svg>

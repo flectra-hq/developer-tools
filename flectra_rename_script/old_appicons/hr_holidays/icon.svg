@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="master-artboard" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" style="enable-background:new 0 0 1400 980;" width="100px" height="100px"><rect id="ee-background" x="0" y="0" width="100" height="100" style="fill: white; fill-opacity: 0; pointer-events: none;"/><defs><linearGradient id="o_icon_hr_holidays__a" x1="7" y1="13.864" x2="40.767" y2="21.868" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="o_icon_hr_holidays__b" x1="7.362" y1="0" x2="33.243" y2="9.653" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="o_icon_hr_holidays__c" x1="15.848" y1=".708" x2="47.049" y2="9.336" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="o_icon_hr_holidays__d" x1="25.04" y1="7.322" x2="53.534" y2="13.855" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="o_icon_hr_holidays__e" x1="33.525" y1="17.977" x2="53.569" y2="21.445" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient y2="0.61064" x2="1.09735" y1="0" x1="0" id="gradient-1">
+   <stop stop-color="#fff"/>
+   <stop stop-opacity="0" stop-color="#fff" offset="1"/>
+  </linearGradient><linearGradient y2="0.35518" x2="1.16118" y1="0" x1="0" id="gradient-2">
+   <stop stop-color="#fff"/>
+   <stop stop-opacity="0" stop-color="#fff" offset="1"/>
+  </linearGradient><linearGradient y2="0.2497" x2="1.1876" y1="0" x1="0" id="gradient-3">
+   <stop stop-color="#fff"/>
+   <stop stop-opacity="0" stop-color="#fff" offset="1"/>
+  </linearGradient><linearGradient y2="0.14526" x2="1.21367" y1="-0.00004" x1="0" id="gradient-4">
+   <stop stop-color="#fff"/>
+   <stop stop-opacity="0" stop-color="#fff" offset="1"/>
+  </linearGradient></defs><g transform="matrix(1.2688016891479492, 0, 0, 1.2688016891479492, -13.532238006591797, -13.143980026245117)"><g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_11">
+   <path stroke="null" id="svg_1" fill="var(--o-icons-purple-pure, #2496F6)" d="m20.64758,85.4769a38.00533,40.59804 0 0 1 -2.38761,-2.3923c-1.09709,-1.19938 -1.01247,-3.10579 0.09822,-4.29387l39.21425,-41.88943l2.13827,2.28253a3.02229,3.22847 0 0 1 0,4.56667l-39.06314,41.72801l0,-0.00161z"/>
+   <path stroke="null" id="svg_2" fill="#00c489" d="m20.64758,85.4769a38.00533,40.59804 0 0 1 -2.38761,-2.3923c-1.09709,-1.19938 -1.01247,-3.10579 0.09822,-4.29387l39.21425,-41.88943l2.13827,2.28253a3.02229,3.22847 0 0 1 0,4.56667l-39.06314,41.72801l0,-0.00161z"/>
+   <path stroke="null" id="svg_3" fill="var(--o-icons-yellow-pure, #FBB130)" d="m30.85084,40.03938l-12.82359,-13.69841a37.77866,40.35591 0 0 1 35.64039,-10.67656l-22.81831,24.37497l0.00151,0z"/>
+   <path stroke="null" id="svg_4" fill-opacity="0.2" fill="url(#o_icon_hr_holidays__b)" d="m30.85084,40.03938l-12.82359,-13.69841a37.77866,40.35591 0 0 1 35.64039,-10.67656l-22.81831,24.37497l0.00151,0z"/>
+   <path stroke="null" id="svg_5" fill="var(--o-icons-yellow-yellow, #F77B09)" d="m30.85084,40.03938l22.81831,-24.37497a37.77866,40.35591 0 0 1 17.78619,10.67656l-26.71405,28.53647l-13.89046,-14.83806z"/>
+   <path stroke="null" id="svg_6" fill-opacity="0.2" fill="url(#o_icon_hr_holidays__c)" d="m30.85084,40.03938l22.81831,-24.37497a37.77866,40.35591 0 0 1 17.78619,10.67656l-26.71405,28.53647l-13.89046,-14.83806z"/>
+   <path stroke="null" id="svg_7" fill="var(--o-icons-cyan-cyan, #0382F3)" d="m57.56338,68.57423l-12.82208,-13.69679l26.71405,-28.53647a37.77564,40.35268 0 0 1 9.54289,17.19969l-23.43486,25.03358z"/>
+   <path stroke="null" id="svg_8" fill-opacity="0.2" fill="url(#o_icon_hr_holidays__d)" d="m57.56338,68.57423l-12.82208,-13.69679l26.71405,-28.53647a37.77564,40.35268 0 0 1 9.54289,17.19969l-23.43486,25.03358z"/>
+   <path stroke="null" id="svg_9" fill="var(--o-icons-cyan-pure, #1BB6F9)" d="m57.56338,68.57584l23.43486,-25.03358a37.76959,40.34622 0 0 1 -7.49378,37.49871c-1.08198,1.35919 -3.00718,1.35112 -4.18588,0.0904l-11.75521,-12.55553z"/>
+   <path stroke="null" id="svg_10" fill-opacity="0.2" fill="url(#o_icon_hr_holidays__e)" d="m57.56338,68.57584l23.43486,-25.03358a37.76959,40.34622 0 0 1 -7.49378,37.49871c-1.08198,1.35919 -3.00718,1.35112 -4.18588,0.0904l-11.75521,-12.55553z"/>
+  </g>
+ </g></g></svg>

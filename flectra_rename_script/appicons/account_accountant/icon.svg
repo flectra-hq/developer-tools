@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="43.3492mm" height="43.3492mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 4334.92 4334.92"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil5 {fill:#FEFEFE;fill-rule:nonzero}
+    .fil2 {fill:url(#id0);fill-rule:nonzero}
+    .fil4 {fill:url(#id1);fill-rule:nonzero}
+    .fil1 {fill:url(#id2);fill-rule:nonzero}
+    .fil3 {fill:url(#id3);fill-rule:nonzero}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="1037.74" y1="4292.27" x2="1037.74" y2="2299.69">
+   <stop offset="0" style="stop-opacity:1; stop-color:#0382F3"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#33A0FF"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="1037.74" y1="2034.03" x2="1037.74" y2="41.45">
+   <stop offset="0" style="stop-opacity:1; stop-color:#FBB130"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FFC259"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" x1="3295.98" y1="4292.27" x2="3295.98" y2="2299.69">
+   <stop offset="0" style="stop-opacity:1; stop-color:#00C489"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#19E3A6"/>
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="3295.98" y1="2034.03" x2="3295.98" y2="41.45">
+   <stop offset="0" style="stop-opacity:1; stop-color:#F77B09"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#FF9C40"/>
+  </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" y="0.01" width="4334.9" height="4334.9"/>
+  <path class="fil1" d="M3918.66 2299.69l-1245.35 0c-206.03,0 -373.62,167.59 -373.62,373.62l0 1245.35c0,206.02 167.59,373.61 373.62,373.61l1245.35 0c206.02,0 373.61,-167.59 373.61,-373.61l0 -1245.35c0,-206.03 -167.59,-373.62 -373.61,-373.62l0 0z"/>
+  <path class="fil2" d="M1660.41 2299.69l-1245.35 0c-206.02,0 -373.61,167.59 -373.61,373.62l0 1245.35c0,206.02 167.59,373.61 373.61,373.61l1245.35 0c206.03,0 373.62,-167.59 373.62,-373.61l0 -1245.35c0,-206.03 -167.59,-373.62 -373.62,-373.62l0 0z"/>
+  <path class="fil3" d="M3918.66 41.45l-1245.35 0c-206.03,0 -373.62,167.59 -373.62,373.61l0 1245.35c0,206.03 167.59,373.62 373.62,373.62l1245.35 0c206.02,0 373.61,-167.59 373.61,-373.62l0 -1245.35c0,-206.02 -167.59,-373.61 -373.61,-373.61l0 0z"/>
+  <path class="fil4" d="M1660.41 41.45l-1245.35 0c-206.02,0 -373.61,167.59 -373.61,373.61l0 1245.35c0,206.03 167.59,373.62 373.61,373.62l1245.35 0c206.03,0 373.62,-167.59 373.62,-373.62l0 -1245.35c0,-206.02 -167.59,-373.61 -373.62,-373.61l0 0z"/>
+  <path class="fil5" d="M2922.38 1162.27l747.21 0c68.84,0 124.54,-55.7 124.54,-124.54 0,-68.83 -55.7,-124.53 -124.54,-124.53l-747.21 0c-68.84,0 -124.54,55.7 -124.54,124.54 0,68.83 55.7,124.54 124.54,124.54l0 -0.01zm-1511.04 -249.07l-249.07 0 0 -249.07c0,-68.84 -55.7,-124.54 -124.54,-124.54 -68.83,0 -124.53,55.7 -124.53,124.54l0 249.07 -249.07 0c-68.84,0 -124.54,55.7 -124.54,124.54 0,68.83 55.7,124.54 124.54,124.54l249.07 -0.01 0 249.07c0,68.84 55.7,124.54 124.54,124.54 68.83,0 124.54,-55.7 124.54,-124.54l0 -249.07 249.06 0c68.84,0 124.54,-55.7 124.54,-124.54 0,-68.83 -55.7,-124.53 -124.54,-124.53l0 0zm-21.4 2030.58c-48.64,-48.64 -127.46,-48.64 -176.1,0l-176.11 176.1 -176.1 -176.1c-48.64,-48.64 -127.46,-48.64 -176.1,0 -48.64,48.64 -48.64,127.46 0,176.1l176.1 176.11 -176.1 176.1c-48.64,48.64 -48.64,127.46 0,176.1 48.64,48.64 127.45,48.64 176.1,0l176.1 -176.1 176.11 176.1c48.64,48.64 127.45,48.64 176.1,0 48.64,-48.64 48.64,-127.46 0,-176.1l-176.1 -176.1 176.1 -176.11c48.64,-48.64 48.64,-127.45 0,-176.1zm2279.65 -21.4l-747.21 0c-68.84,0 -124.54,55.7 -124.54,124.53 0,68.84 55.7,124.54 124.54,124.54l747.21 0c68.84,0 124.54,-55.7 124.54,-124.54 0,-68.84 -55.7,-124.54 -124.54,-124.54l0 0.01zm0 498.14l-747.21 0c-68.84,0 -124.54,55.7 -124.54,124.54 0,68.83 55.7,124.53 124.54,124.53l747.21 0c68.84,0 124.54,-55.7 124.54,-124.54 0,-68.83 -55.7,-124.53 -124.54,-124.53l0 0z"/>
+ </g>
+</svg>
